@@ -28,7 +28,6 @@ Module.register("MMM-RVV", {
 		}, self.config.updateInterval);
 	},
 
-	// Define required scripts.
 	getScripts: function() {
 		return [];
 	},
@@ -38,15 +37,10 @@ Module.register("MMM-RVV", {
 	},
 
 	getTripsFromRVV: function() {
-		//if (self.config.updateCounter === self.config.updateInterval){
 		Log.info("--> RVV: Getting trips for '" + this.config.fromName + "'");
 		this.sendSocketNotification("GET_TRIPS", {
 			config: this.config
 		});
-		// }
-		// else{
-		// 	this.updateDom();
-		// }
 	},
 
 	socketNotificationReceived: function(notification, payload) {
@@ -62,31 +56,7 @@ Module.register("MMM-RVV", {
 
 	},
 
-	// Override dom generator.
 	getDom: function() {
-		//console.log("getDo: " + this.updateCounter + " --- " + this.config.updateInterval / 1000);
-
-		// if (this.updateCounter < this.config.updateInterval / 1000) {
-		// 	this.updateCounter++;
-
-		// 	console.log("updateCtr: " + this.updateCounter);
-
-		// 	var wrapper = document.getElementById("wrapper");
-		// 	var spnTimePassed = document.getElementById("RVVTimePassed");
-		// 	if (spnTimePassed === null){
-		// 		spnTimePassed = document.createElement("span");
-		// 		spnTimePassed.id = "RVVTimePassed";
-		// 		spnTimePassed.className = "rvvTitle";
-		// 		if (wrapper !== null){
-		// 			wrapper.appendChild(spnTimePassed);
-		// 		}
-		// 	}
-		// 	spnTimePassed.textContent = "Time passed: " + this.updateCounter + " sec.";
-		// 	return wrapper;
-		// }
-		// else{
-		// 	this.updateCounter = 0;
-
 		var wrapper = document.createElement("div");
 		wrapper.id = "wrapper";
 
@@ -119,7 +89,7 @@ Module.register("MMM-RVV", {
 			var tdTrip = document.createElement("td");
 			tdTrip.className = "rvvTripCol";
 
-			// Cell content, prefix: e.g. 'Abfahrt um 17:04h '
+			// Cell content, prefix: e.g. 'Departure at 17:04h '
 			if (this.config.toName !== "") {
 				tdTrip.textContent =
 					"Abfahrt um: "
@@ -148,8 +118,7 @@ Module.register("MMM-RVV", {
 		}
 		tripWrapper.appendChild(tblTrips);
 		wrapper.appendChild(tripWrapper);
-		console.log(wrapper);
+
 		return wrapper;
-		//}
 	}
 });
