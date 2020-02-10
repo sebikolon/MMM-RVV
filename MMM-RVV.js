@@ -93,50 +93,60 @@ Module.register("MMM-RVV", {
 		var tripWrapper = document.createElement("div");
 		tripWrapper.id = "rvv-container";
 		var spnTripWrapper = document.createElement("span");
-		spnTripWrapper.className="rvvTitle";
-		var currentDate = new Date();
-		spnTripWrapper.textContent =
-			this.config.title + " ("
-			+ currentDate.getHours() + ":"
-			+ (currentDate.getMinutes() < 10 ? "0" : "") + currentDate.getMinutes() + ":"
-			+ currentDate.getSeconds() + ")";
 		tripWrapper.appendChild(spnTripWrapper);
 
+		// Show title of module only if enabled in config
+		if (self.config.showTitle !== ""){
+			spnTripWrapper.className="rvvTitle";
+			var currentDate = new Date();
+			spnTripWrapper.textContent =
+				this.config.title + " ("
+				+  (currentDate.getHours() < 10 ? "0" : "") + currentDate.getHours() + ":"
+				+ (currentDate.getMinutes() < 10 ? "0" : "") + currentDate.getMinutes() + ":"
+				+  (currentDate.getSeconds() < 10 ? "0" : "") + currentDate.getSeconds() + ")";
+		}
+
+		// Create new table that will hold all trips in a single row
+		tblTrips = document.createElement("table");
+		tblTrips.className = "small";
+
+		// Add a row for each trip
 		for (var tripIdx=0; tripIdx < this.trips.length; tripIdx++){
 			var curTrip = this.trips[tripIdx];
-			var pTrip = document.createElement("p");
 
-			// Row content, prefix: e.g. 'um 17:04h '
-			var spnTrip = document.createElement("span");
+			var trTrip = document.createElement("tr");
+			trTrip.className = "rvvTripRow";
+			var tdTrip = document.createElement("td");
+			tdTrip.className = "rvvTripCol";
 
+			// Cell content, prefix: e.g. 'Abfahrt um 17:04h '
 			if (this.config.toName !== "") {
-				spnTrip.textContent =
+				tdTrip.textContent =
 					"Abfahrt um: "
 					+ curTrip.departure
 					+ "h ";
-			} else
+			}
+			else
 			{
-				spnTrip.textContent =
+				tdTrip.textContent =
 					curTrip.direction.substr(0, this.config.displayDirectionLimit)
 					//+ curTrip.direction.length > this.config.displayDirectionLimit ? "." : ""
 					+ ": um "
 					+ curTrip.departure + "h ";
 			}
 
-			// row content, postfix: e.g. '(+1)' or '(0)', having different styles applied
+			// Cell content, postfix: e.g. '(+1)' or '(0)', having different styles applied
 			var spnTripDelay = document.createElement("span");
 			spnTripDelay.className = "rvvTripDelay";
 			spnTripDelay.classList.add(curTrip.delay > 0 ? "rvvTripHasDelay": "rvvTripHasNoDelay");
 			spnTripDelay.textContent = "(" + curTrip.delay + ")";
+			tdTrip.classList.add("rvvTripText");
 
-			// Add css classes
-			spnTrip.classList.add("rvvTripText");
-			//spnTrip.classList.add("rvvContent");
-
-			pTrip.appendChild(spnTrip);
-			pTrip.appendChild(spnTripDelay);
-			tripWrapper.appendChild(pTrip);
+			tdTrip.appendChild(spnTripDelay);
+			trTrip.appendChild(tdTrip);
+			tblTrips.appendChild(trTrip);
 		}
+		tripWrapper.appendChild(tblTrips);
 		wrapper.appendChild(tripWrapper);
 		console.log(wrapper);
 		return wrapper;

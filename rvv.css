@@ -1,19 +1,19 @@
 /* The basic container */
 #rvv-container {
-  width: 100%;
+  /* width: 100%;
   padding-left: 0;
   padding-right: 10px;
-  vertical-align: top;
+  vertical-align: top; */
 }
 
-p {
+.MMM-RVV p {
   margin: 1px;
 }
-span {
-  font-size: 0.7em;
+.MMM-RVV span {
+  /* font-size: 0.7em; */
 }
 
-.rvvContent {
+.MMM-RVV .rvvContent {
   /* white-space: nowrap;
   position: relative;
   overflow: hidden; /* Required to make ellipsis work */
@@ -26,17 +26,21 @@ span {
   transition: top 3s, height 3s; */
 }
 
-.rvvTitle{
+.MMM-RVV .rvvTitle{
   font-weight: bold;
-  font-size: 1.2em;
+  font-size: 0.8em;
   color: white;
 }
-.rvvTripText {
+.MMM-RVV .rvvTripCol {
   color: white;
 }
-.rvvTripHasDelay{
+.MMM-RVV .rvvTripRow {
+
+}
+
+.MMM-RVV .rvvTripHasDelay{
   color: red;
 }
-.rvvTripHasNoDelay{
-  color: green;
+.MMM-RVV .rvvTripHasNoDelay{
+  color: rgb(14, 246, 14);
 }

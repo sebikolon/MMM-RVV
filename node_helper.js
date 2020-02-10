@@ -69,8 +69,24 @@ module.exports = NodeHelper.create({
 					});
 
 					// Store the new trip, if destination fits
-					if (tripObj.direction === payload.config.toName || payload.config.toName === ""){
+					if (tripObj.direction === payload.config.toName || payload.config.toName === "")
+					{
+						// Check special conditions
+						if (trips.length > 0){
+							// Case 1: Remove the first of 2 duplicated trips
+							if(tripObj.direction === "Schwabenstraße" && payload.config.fromID === 4014037){
+								if ((tripObj.departure).substr(3,4) - (trips[trips.length -1].departure).substr(3,4) === 2)
+								{
+									trips.pop();
+								}
+							}
+							// Case 2: tbd.
+							// Case 3: tbd.
+							// Case 4: tbd.
+							// ...
+						}
 						trips.push(tripObj);
+
 						// Check, if trip limit is already reached
 						if (trips.length >= payload.config.tripLimit) {
 							RVVHelper.printToConsole("MMM-RVV could fetch more trips, but they were limited to " + payload.config.tripLimit + " trips. Aborting the fetch.", payload.config);
