@@ -20,6 +20,10 @@
   
 }
 
+.MMM-RVV header{
+  margin-bottom: 0px;
+}
+
 .MMM-RVV .hRoute, .hDestination, .hDetail, .hDeparture {
   color: white;
   padding-right: 10px;
@@ -43,6 +47,7 @@
 
 .MMM-RVV .rvvTripColDeparture{
   text-align: right;
+  padding-right: 0px;
 }
 
 .MMM-RVV .rvvTripColDeparture, .rvvTripColRoute{
