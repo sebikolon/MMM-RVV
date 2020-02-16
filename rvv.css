@@ -1,41 +1,6 @@
-/* The basic container */
-#rvv-container {
-  /* width: 100%;
-  padding-left: 0;
-  padding-right: 10px;
-  vertical-align: top; */
-}
-
-.MMM-RVV p {
-  margin: 1px;
-}
-.MMM-RVV span {
-  /* font-size: 0.7em; */
-}
-
-.MMM-RVV .rvvContent {
-  /* white-space: nowrap;
-  position: relative;
-  overflow: hidden; /* Required to make ellipsis work */
-  /* text-overflow: clip;
-
-  top: 0%; */ 
-
-  /* -webkit-transition: top 3s, height 3s;
-  -moz-transition: top 3s, height 3s;
-  transition: top 3s, height 3s; */
-}
-
-.MMM-RVV .rvvTitle{
-  font-weight: bold;
-  font-size: 0.6em;
-  color: white;
-}
 
 .MMM-RVV #divReloadWrapper {
-  /* border: none;
-  border-color: white;
-  border-style: solid; */
+  margin-bottom: 10px;
  }
 
 .MMM-RVV #divReload {
@@ -53,7 +18,7 @@
 }
 
 .MMM-RVV .rvvTripRow {
-  /* font-style: italic; */
+  
 }
 
 .MMM-RVV .hRoute, .hDestination, .hDetail, .hDeparture {
@@ -72,6 +37,10 @@
 .MMM-RVV .rvvTripColRoute, .rvvTripColDestination, .rvvTripColDetails, .rvvTripColDeparture, .rvvTripColDelay {
   padding-right: 10px;
 } 
+
+.MMM-RVV .rvvTripColDestination{
+  max-width: 400px;
+}
 
 .MMM-RVV .rvvTripColDeparture{
   text-align: right;
