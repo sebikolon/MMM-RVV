@@ -17,9 +17,8 @@ module.exports = {
 	addTrip: function(tripObj, trips, config){
 		// Check special conditions
 		if (trips.length > 0) {
-
 			// Case 1: Remove the first of 2 duplicated trips for route "Graßer Weg" => "Schwabenstraße"
-			if (tripObj.direction === "Schwabenstraße" && config.fromID === 4014037){
+			if (tripObj.direction === "Schwabenstraße" && config.stop_from_ID === 4014037){
 				if ((tripObj.departure).substr(3,2) - (trips[trips.length -1].departure).substr(3,2) === 2)
 				{
 					trips.pop();
