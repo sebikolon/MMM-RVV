@@ -6,9 +6,10 @@ Module.register("MMM-RVV", {
 		titleText: "Universität Regensburg",
 		url : "http://www.bayern-fahrplan.de/xhr_departures_monitor?limit=25&zope_command=dm_next&nameInfo_dm=",
 		logToConsole : false,		// Log each single trip onto the console (for debugging purposes)
+		wrapDestination: true,
 		maximumTripsToShow: 5,		// Max. number of trips to show
 		maxTitleLength: 12,			// Set a limit for the number of trips to be displayed
-		stop_from_ID: 4014080, // (Universität) // 4014037 (Graßer Weg),		// Get your stopID from: https://www.bayern-fahrplan.de/XML_COORD_REQUEST?&jsonp=jQuery17203101277124009285_1524132000786&boundingBox=&boundingBoxLU=11.953125%3A49.15297%3AWGS84%5BDD.DDDDD%5D&boundingBoxRL=12.304688%3A48.922499%3AWGS84%5BDD.DDDDD%5D&coordOutputFormat=WGS84%5BDD.DDDDD%5D&type_1=STOP&outputFormat=json&inclFilter=1&_=1524132001290
+		stop_from_ID: 4014080, 		// (Universität) // 4014037 (Graßer Weg),		// Get your stopID from: https://www.bayern-fahrplan.de/XML_COORD_REQUEST?&jsonp=jQuery17203101277124009285_1524132000786&boundingBox=&boundingBoxLU=11.953125%3A49.15297%3AWGS84%5BDD.DDDDD%5D&boundingBoxRL=12.304688%3A48.922499%3AWGS84%5BDD.DDDDD%5D&coordOutputFormat=WGS84%5BDD.DDDDD%5D&type_1=STOP&outputFormat=json&inclFilter=1&_=1524132001290
 		stop_to: []					// The names of the destination stops. If not set, display all destinations
 	},
 
@@ -102,7 +103,7 @@ Module.register("MMM-RVV", {
 		return Math.abs(Math.round(diff));
 	},
 
-	getTripRow: function(curTrip) {
+	getTripRow: function(curTrip, config) {
 		// New row for the trip
 		let trTrip = document.createElement("tr");
 		trTrip.className = "rvvTripRow";
@@ -115,7 +116,10 @@ Module.register("MMM-RVV", {
 		// Holds the destination (e.g. "Burgweinting") + detail info, if available
 		let tdTripDestination = document.createElement("td");
 		tdTripDestination.className = "rvvTripColDestination";
-		tdTripDestination.textContent = curTrip.direction;
+		if (config.wrapDestination === true) {
+			tdTripDestination.classList.add("wrapLine");
+		}
+		tdTripDestination.textContent = curTrip.direction + curTrip.direction + curTrip.direction;
 		if (curTrip.detailInfo > ""){
 			tdTripDestination.textContent += " (" + curTrip.detailInfo + ")";
 		}
@@ -177,13 +181,6 @@ Module.register("MMM-RVV", {
 			return wrapper;
 		}
 
-		// Append last update to header
-		// var currentDate = new Date();
-		// var lastUpdate =
-		// 	" (" + this.translate("LAST") + " " + this.translate("UPDATE") + " @"
-		// 	+ this.padWithZeros(currentDate.getHours()) + ":"
-		// 	+ this.padWithZeros(currentDate.getMinutes()) + ":"
-		// 	+ this.padWithZeros(currentDate.getSeconds()) + ")";
 		var header = document.createElement("header");
 		header.innerHTML = this.config.titleText; // +  lastUpdate;
 		wrapper.appendChild(header);
@@ -199,7 +196,7 @@ Module.register("MMM-RVV", {
 
 		for (var tripIdx=0; tripIdx < this.trips.length; tripIdx++){
 			var curTrip = this.trips[tripIdx];
-			var trTrip = this.getTripRow(curTrip);
+			var trTrip = this.getTripRow(curTrip, this.config);
 			tblTrips.appendChild(trTrip);
 		}
 		tripWrapper.appendChild(tblTrips);

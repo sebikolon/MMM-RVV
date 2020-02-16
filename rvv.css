@@ -61,6 +61,10 @@
   padding-right: 10px;
 }
 
+.MMM-RVV .wrapLine {
+  word-wrap: break-word;
+}
+
 .MMM-RVV .hDeparture {
   text-align: right;
 }
