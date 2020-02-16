@@ -1,0 +1,16 @@
+{
+  "LOADING": "Lade...",
+  "DESTINATION": "Richtung",
+  "DEPARTURE": "Abfahrt",
+  "STOP": "Haltestelle",
+  "TITLE": "RVV Haltestellenmonitor",
+  "LAST": "Letztes",
+  "UPDATE": "Update",
+  "ROUTE": "Linie",
+  "DETAIL": "Details",
+  "NOW": "sofort",
+  "AT": "um",
+  "MINUTE": "Minute",
+  "MINUTES": "Minuten",
+  "MINUTES_ABBR": "Min."
+}

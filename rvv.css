@@ -28,14 +28,53 @@
 
 .MMM-RVV .rvvTitle{
   font-weight: bold;
-  font-size: 0.8em;
+  font-size: 0.6em;
   color: white;
 }
-.MMM-RVV .rvvTripCol {
-  color: white;
-}
-.MMM-RVV .rvvTripRow {
 
+.MMM-RVV #divReloadWrapper {
+  /* border: none;
+  border-color: white;
+  border-style: solid; */
+ }
+
+.MMM-RVV #divReload {
+  width: 50px;
+  height: 5px;
+  background: red;
+  position: relative;
+  animation: mymove infinite;
+  animation-duration: 30s;
+}
+
+@keyframes mymove {
+  from {left: 0px;}
+  to {left: 90%;}
+}
+
+.MMM-RVV .rvvTripRow {
+  /* font-style: italic; */
+}
+
+.MMM-RVV .hRoute, .hDestination, .hDetail, .hDeparture {
+  color: white;
+  padding-right: 10px;
+}
+
+.MMM-RVV .hDeparture {
+  text-align: right;
+}
+
+.MMM-RVV .rvvTripColRoute, .rvvTripColDestination, .rvvTripColDetails, .rvvTripColDeparture, .rvvTripColDelay {
+  padding-right: 10px;
+} 
+
+.MMM-RVV .rvvTripColDeparture{
+  text-align: right;
+}
+
+.MMM-RVV .rvvTripColDeparture, .rvvTripColRoute{
+  color: white;
 }
 
 .MMM-RVV .rvvTripHasDelay{

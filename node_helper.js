@@ -11,36 +11,34 @@ module.exports = NodeHelper.create({
 
 	socketNotificationReceived: function(notification, payload) {
 		var self = this;
-
-		if(notification === "GET_TRIPS") {
-			var url = payload.config.url + payload.config.fromID;
+		if (notification === "GET_TRIPS") {
+			var url = payload.config.url + payload.config.stop_from_ID;
 
 			request(url, function (error, response, body) {
 				var $ = cheerio.load(body);
-
 				var trips = [];
 
-				// get delays + departures
 				var trpCnt = 1;
 				var limitReached = false;
 				$(".trip").each(function() {
 					if (limitReached === true) {
 						return;
 					}
-					// We store 3 properties for a trip
-					var tripObj = {direction: "", delay: "", departure: ""};
-
+					// We store 5 properties of a trip
+					var tripObj = {direction: "", detailInfo: "", delay: "", departure: "", route: ""};
 					var tripData = $(this);
 
-					RVVHelper.printToConsole("\nTRIP #" + trpCnt, payload.config);
+					RVVHelper.printToConsole("\nTrip #" + trpCnt, payload.config);
 					trpCnt++;
 
-					// default delay is 0 ("in time")
+					// Set defaults
 					tripObj.delay = "0";
+					tripObj.detailInfo = "";
 					tripObj.departure = "00:00";
 					tripObj.direction = "";
+					tripObj.route = "tbd.";
 
-					// Get 'delay' or 'nodelay' class objects
+					// Get 'delay' or 'nodelay' class objects and parse it as delay of the bus (e.g. +2 minutes)
 					var tripDelay = tripData.find(".delay");
 					if (tripDelay.length > 0){
 						tripObj.delay = tripDelay.text().trim();
@@ -59,44 +57,43 @@ module.exports = NodeHelper.create({
 					}
 					RVVHelper.printToConsole("Departure: " + tripObj.departure, payload.config);
 
-					let tdCnt = 1;
+					let tdCnt = 0;
 					$(tripData.find("td")).each(function(){
 						tdCnt++;
-						if (tdCnt > 2 && !$(this).hasClass("icon") && $(this).text().trim() != ""){
-							tripObj.direction = $(this).text().trim();
-							RVVHelper.printToConsole("Direction: " + tripObj.direction, payload.config);
+						if (!$(this).hasClass("icon")){
+							// Direction, e.g. 'Klinikum'
+							if (tdCnt === 3 && $(this).text().trim() != ""){
+								tripObj.direction = $(this).text().trim();
+								RVVHelper.printToConsole("Direction: " + tripObj.direction, payload.config);
+							}
+							// Additional information, e.g. 'Bstg. A'
+							if (tdCnt === 4 && $(this).text().trim() != ""){
+								tripObj.detailInfo = $(this).text().trim();
+								RVVHelper.printToConsole("Add. information: " + tripObj.detailInfo, payload.config);
+							}
+						} else {
+							// Route, e.g. '2'
+							if ($(this).find("a").first().text().trim() != ""){
+								tripObj.route = $(this).find("a").first().text().trim();
+								RVVHelper.printToConsole("Route: " + tripObj.route, payload.config);
+							}
 						}
+
 					});
 
-					// Store the new trip, if destination fits
-					if (tripObj.direction === payload.config.toName || payload.config.toName === "")
-					{
-						// Check special conditions
-						if (trips.length > 0){
-							// Case 1: Remove the first of 2 duplicated trips
-							if(tripObj.direction === "Schwabenstraße" && payload.config.fromID === 4014037){
-								if ((tripObj.departure).substr(3,4) - (trips[trips.length -1].departure).substr(3,4) === 2)
-								{
-									trips.pop();
-								}
+					if (payload.config.stop_to.length === 0) {
+						trips = RVVHelper.addTrip(tripObj, trips, payload.config);
+					}
+					else {
+						// Iterate over destinations
+						for(var i = 0; i < payload.config.stop_to.length; i++)
+						{
+							if (tripObj.direction === payload.config.stop_to[i])
+							{
+								trips = RVVHelper.addTrip(tripObj, trips, payload.config);
 							}
-							// Case 2: tbd.
-							// Case 3: tbd.
-							// Case 4: tbd.
-							// ...
-						}
-						trips.push(tripObj);
-
-						// Check, if trip limit is already reached
-						if (trips.length >= payload.config.tripLimit) {
-							RVVHelper.printToConsole("MMM-RVV could fetch more trips, but they were limited to " + payload.config.tripLimit + " trips. Aborting the fetch.", payload.config);
-							limitReached = true;
 						}
 					}
-					else{
-						RVVHelper.printToConsole("Destination '" + tripObj.direction + "' does not match with '" + payload.config.toName + "'!", payload.config);
-					}
-
 				});
 
 				// Return trips to requester

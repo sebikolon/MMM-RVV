@@ -1,0 +1,16 @@
+{
+  "LOADING": "Loading...",
+  "DESTINATION": "Destination",
+  "DEPARTURE": "Departure",
+  "STOP": "Stop",
+  "TITLE": "RVV Stop monitor",
+  "LAST": "Last",
+  "UPDATE": "Update",
+  "ROUTE": "Line",
+  "DETAIL": "Details",
+  "NOW": "now",
+  "AT": "at",
+  "MINUTE": "Minute",  
+  "MINUTES": "Minutes",
+  "MINUTES_ABBR": "Min."
+}
