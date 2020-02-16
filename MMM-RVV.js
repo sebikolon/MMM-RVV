@@ -6,6 +6,7 @@ Module.register("MMM-RVV", {
 		titleText: "Universität Regensburg",
 		url : "http://www.bayern-fahrplan.de/xhr_departures_monitor?limit=25&zope_command=dm_next&nameInfo_dm=",
 		logToConsole : false,		// Log each single trip onto the console (for debugging purposes)
+		progressColor: "#6db64b", 			// Default color (or RGB code) of the progress bar
 		wrapDestination: true,
 		maximumTripsToShow: 5,		// Max. number of trips to show
 		maxTitleLength: 12,			// Set a limit for the number of trips to be displayed
@@ -119,7 +120,7 @@ Module.register("MMM-RVV", {
 		if (config.wrapDestination === true) {
 			tdTripDestination.classList.add("wrapLine");
 		}
-		tdTripDestination.textContent = curTrip.direction + curTrip.direction + curTrip.direction;
+		tdTripDestination.textContent = curTrip.direction;
 		if (curTrip.detailInfo > ""){
 			tdTripDestination.textContent += " (" + curTrip.detailInfo + ")";
 		}
@@ -170,6 +171,7 @@ Module.register("MMM-RVV", {
 		var divReload = document.createElement("div");
 		divReload.id = "divReload";
 		divReload.style.animationDuration = (this.config.updateInterval / 1000) + "s";
+		divReload.style.background = this.config.progressColor;
 		divReloadWrapper.appendChild(divReload);
 		tripWrapper.appendChild(divReloadWrapper);
 

@@ -6,7 +6,6 @@
 .MMM-RVV #divReload {
   width: 50px;
   height: 5px;
-  background: red;
   position: relative;
   animation: mymove infinite;
   animation-duration: 30s;
