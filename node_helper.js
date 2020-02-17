@@ -15,8 +15,21 @@ module.exports = NodeHelper.create({
 			var url = payload.config.url + payload.config.stop_from_ID;
 
 			request(url, function (error, response, body) {
-				var $ = cheerio.load(body);
 				var trips = [];
+				// Return on error
+				if (error || (response.statusCode !== 200)) {
+					if (error){
+						RVVHelper.printToConsole("\n" + error, payload.config);
+					} else{
+						RVVHelper.printToConsole("\nResponse Statuscode: " + response.statusCode, payload.config);
+					}
+					self.sendSocketNotification("ERR_RETURN_TRIPS", {
+						trips : trips
+					});
+					return;
+				}
+
+				var $ = cheerio.load(body);
 
 				var trpCnt = 1;
 				var limitReached = false;

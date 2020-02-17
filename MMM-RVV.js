@@ -55,7 +55,8 @@ Module.register("MMM-RVV", {
 	},
 
 	socketNotificationReceived: function(notification, payload) {
-		if (notification === "RETURN_TRIPS") {
+		this.notification = notification;
+		if (notification === "RETURN_TRIPS" || notification === "ERR_RETURN_TRIPS") {
 			this.trips = payload.trips;
 			this.updateDom(1000); 		// 1 sec animation delay
 		}
@@ -175,10 +176,17 @@ Module.register("MMM-RVV", {
 		divReloadWrapper.appendChild(divReload);
 		tripWrapper.appendChild(divReloadWrapper);
 
-		if (!this.trips) {
+		if (this.notification === "ERR_RETURN_TRIPS" || this.trips.length === 0) {
 			var text = document.createElement("div");
-			text.innerHTML = this.translate("LOADING");
-			text.className = "small dimmed";
+			text.classList.add("wrapLine");
+			text.classList.add("small");
+			text.classList.add("dimmed");
+			if (this.notification === "ERR_RETURN_TRIPS") {
+				text.innerHTML = this.translate("ERROR_FETCHING_SOURCE") + " " + this.name + ". " + this.translate("PLEASE_CHECK_CONFIG") + "!";
+			} else{
+				text.innerHTML = this.translate("LOADING");
+			}
+			// text.className = " dimmed";
 			wrapper.appendChild(text);
 			return wrapper;
 		}

@@ -1,5 +1,7 @@
 {
   "LOADING": "Lade...",
+  "ERROR_FETCHING_SOURCE": "Fehler beim Abrufen der Daten für",
+  "PLEASE_CHECK_CONFIG": "Bitte Internetverbindung oder Modul-Konfiguration überprüfen",
   "DESTINATION": "Richtung",
   "DEPARTURE": "Abfahrt",
   "STOP": "Haltestelle",

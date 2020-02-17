@@ -1,5 +1,7 @@
 {
   "LOADING": "Loading...",
+  "ERROR_FETCHING_SOURCE": "Failed to load data for",
+  "PLEASE_CHECK_CONFIG": "Please check internet connection or module configuration",
   "DESTINATION": "Destination",
   "DEPARTURE": "Departure",
   "STOP": "Stop",
