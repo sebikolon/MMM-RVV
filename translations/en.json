@@ -11,6 +11,7 @@
   "ROUTE": "Line",
   "DETAIL": "Details",
   "NOW": "now",
+  "BEFORE": "before",
   "AT": "at",
   "MINUTE": "Minute",  
   "MINUTES": "Minutes",
