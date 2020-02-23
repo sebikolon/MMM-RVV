@@ -128,7 +128,7 @@ Module.register("MMM-RVV", {
 		// Adds the delay: e.g. '(+1)' or '(0)' or 'Halt entfällt', having different styles applied
 		var spnTripDelay = document.createElement("span");
 		spnTripDelay.className = "rvvTripColDelay";
-		var delayOptions = ["Halt entfällt", "Fahrt fällt aus"];
+		var delayOptions = ["Halt entfällt", "Fahrt entfällt", "Fahrt fällt aus"];
 		spnTripDelay.classList.add(curTrip.delay > 0 || delayOptions.includes(curTrip.delay) ? "rvvTripHasDelay": "rvvTripHasNoDelay");
 		spnTripDelay.textContent = " (" + curTrip.delay + ")";
 		tdTripDeparture.appendChild(spnTripDelay);
