@@ -1,10 +1,10 @@
 # MMM-RVV
-Departure monitor for the **RVV (Regensburger Verkehrsverbund)** train and bus system (ÖPNV / public transport).
+Departure monitor for the [**RVV (Regensburger Verkehrsverbund)**](https://rvv.de "RVV Homepage") train and bus system (ÖPNV / public transport).
 
-The data is fetched from [bayern-fahrplan.de](https://bayern-fahrplan.de), the distributor for public transport data in bavaria.
+The data is fetched from [bayern-fahrplan.de](https://bayern-fahrplan.de "Bayern Fahrplan"), the distributor for public transport data in bavaria.
 The reason for the development of this open source module is because the official API provided by them requires the signage of a personalized contract in order to gain access to their endpoints. For me, this violates the approach of open data. 
 
-The structure and layout of this MagicMirror module was inspired by [MMM-KVV](https://github.com/yo-less/MMM-KVV).
+The structure and layout of this MagicMirror module was inspired by [MMM-KVV](https://github.com/yo-less/MMM-KVV *Karlsruhe Public Transport*).
 
 ## Screenshots
 
@@ -15,7 +15,7 @@ The structure and layout of this MagicMirror module was inspired by [MMM-KVV](ht
 MMM-RVV features language support for `German (de)` and `English (en)` mirrors.
 
 ## Prerequisite
-A working installation of [MagicMirror<sup>2</sup>](https://github.com/MichMich/MagicMirror)
+A working installation of [MagicMirror<sup>2</sup>](https://github.com/MichMich/MagicMirror).
 
 ## Dependencies
   * npm
@@ -29,14 +29,14 @@ A working installation of [MagicMirror<sup>2</sup>](https://github.com/MichMich/
 4. Execute `npm install`.
 
 ## Module behavior
-Please note that this module **auto-creates a module header** which displays the text that was defined in the module settings. It is therefore recommended not to add a 'header' entry to your config.js for this module.<P>
-There is a *loading bar* displayed that runs from the left to the right side of the module border, indicating when the next data refresh is performed. You can adjust the color of this loading bar in the module config. In order to adjust the look-and-feel more granular, add an override to the CSS identifiers `.MMM-RVV #divReload` and `.MMM-RVV #divReloadWrapper`.
+Please note that this module **auto-creates a module header** which displays the text that was defined in the module settings. It is therefore recommended not to add a 'header' entry to your config.js for this module.
 <P>
-<!-- This module automatically disappears from your mirror as soon as a station has stopped offering connections at night. It reappears as soon as your chosen station is scheduled to be served again.<P>-->
+There is a **progresse loading bar** displayed that runs from the left to the right side of the module border, indicating when the next data refresh is performed. You can adjust the color of this loading bar in the module config. In order to adjust the look-and-feel more granular, add an override to the CSS identifiers `.MMM-RVV #divReload` and `.MMM-RVV #divReloadWrapper`.
+<P>
 This module has been programmed to allow for **multiple instances**. Simply add more MMM-RVV config entries to your config.js file to display multiple stations and configure them according to your needs.
 
 ## Configuration
-You can show the MMM-RVV module without setting any configuration options. In this case, the stop 'University' is set as default stopID
+You can show the MMM-RVV module without setting any configuration options. In this case, the stop 'Regensburg University' is set as default stop_from_ID.
 
 Sample configuration entry for your `~/MagicMirror/config/config.js` with optional parameters:
 
@@ -46,14 +46,11 @@ Sample configuration entry for your `~/MagicMirror/config/config.js` with option
         module: 'MMM-RVV',
         position: 'bottom_left',
         config: {
-            updateInterval :	30 * 1000, 	    // Updates data every 30 seconds
-			stop_from_ID:       4014080,		// The ID of the stop to be displayed
-			maximumTripsToShow: 10,		        // Max. number of trips to show
-			stop_to: 			["Klinikum",    // The names of the destination stops
-                                "Roter-Brach-Weg"]			
-			titleText : 		"Universität Regensburg", // Module header title
-            logToConsole : 		false,		    // Turn on the log onto the console (for debugging purposes)
-		    progressColor: 		"#6db64b", 	    // Default color name (or RGB code) of the progress bar
+            updateInterval :	30 * 1000, 	    
+			stop_from_ID:       4014080,				        
+			stop_to: 			["Klinikum", "Roter-Brach-Weg"],
+            maximumTripsToShow: 10,			
+			titleText : 		"Universität Regensburg"  
         }
     } 		// If this isn't your last module, add a comma after the bracket
     
@@ -78,7 +75,7 @@ Sample configuration entry for your `~/MagicMirror/config/config.js` with option
 ## Licence
 MIT License
 
-Copyright (c) 2020 sebikolon (https://github.com/sebikolon/)
+Copyright (c) 2020 sebikolon (https://github.com/sebikolon)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
