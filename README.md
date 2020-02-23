@@ -46,13 +46,12 @@ Sample configuration entry for your `~/MagicMirror/config/config.js` with option
         module: 'MMM-RVV',
         position: 'bottom_left',
         config: {
-            updateInterval :	30 * 1000, 	    
-			stop_from_ID:       4014080,				        
-			stop_to: 			["Klinikum", "Roter-Brach-Weg"],
-            maximumTripsToShow: 10,			
-			titleText : 		"Universität Regensburg"  
+            updateInterval :	30 * 1000,
+            stop_from_ID:       4014080,
+            stop_to: 			["Klinikum", "Roter-Brach-Weg"],maximumTripsToShow: 10,
+            titleText : 		"Universität Regensburg"  
         }
-    } 		// If this isn't your last module, add a comma after the bracket
+    } 	    // If this isn't your last module, add a comma after the bracket
     
     ...
 
