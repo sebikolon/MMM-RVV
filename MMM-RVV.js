@@ -7,9 +7,7 @@ Module.register("MMM-RVV", {
 		url : 				"http://www.bayern-fahrplan.de/xhr_departures_monitor?limit=25&zope_command=dm_next&nameInfo_dm=",
 		logToConsole : 		false,		// Log each single trip onto the console (for debugging purposes)
 		progressColor: 		"#6db64b", 	// Default color (or RGB code) of the progress bar
-		wrapDestination: 	true,
 		maximumTripsToShow: 5,			// Max. number of trips to show
-		maxTitleLength: 	12,			// Set a limit for the number of trips to be displayed
 		stop_from_ID: 		4014080, 	// (Universität) // 4014037 (Graßer Weg),		// Get your stopID from: https://www.bayern-fahrplan.de/XML_COORD_REQUEST?&jsonp=jQuery17203101277124009285_1524132000786&boundingBox=&boundingBoxLU=11.953125%3A49.15297%3AWGS84%5BDD.DDDDD%5D&boundingBoxRL=12.304688%3A48.922499%3AWGS84%5BDD.DDDDD%5D&coordOutputFormat=WGS84%5BDD.DDDDD%5D&type_1=STOP&outputFormat=json&inclFilter=1&_=1524132001290
 		stop_to: 			[]			// The names of the destination stops. If not set, display all destinations
 	},
@@ -100,9 +98,7 @@ Module.register("MMM-RVV", {
 		// Holds the destination (e.g. "Burgweinting") + detail info, if available
 		let tdTripDestination = document.createElement("td");
 		tdTripDestination.className = "rvvTripColDestination";
-		if (config.wrapDestination === true) {
-			tdTripDestination.classList.add("wrapLine");
-		}
+		tdTripDestination.classList.add("wrapLine");
 		tdTripDestination.textContent = curTrip.direction;
 		if (curTrip.detailInfo > ""){
 			tdTripDestination.textContent += " (" + curTrip.detailInfo + ")";
