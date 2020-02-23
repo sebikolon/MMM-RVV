@@ -87,24 +87,6 @@ Module.register("MMM-RVV", {
 		return tr;
 	},
 
-	getRemainingMinutes: function(sDeparture) {
-		if (sDeparture.length != 5){
-			return sDeparture;
-		}
-		let dtNow = new Date();
-		let dtGiven = new Date(
-			dtNow.getFullYear(),
-			dtNow.getMonth(),
-			dtNow.getDate(),
-			sDeparture.substr(0,2),
-			sDeparture.substr(3,2),
-			dtNow.getSeconds());
-
-		let diff = (dtGiven.getTime() - dtNow.getTime()) / 1000;
-		diff /= 60;
-		return Math.abs(Math.round(diff));
-	},
-
 	getTripRow: function(curTrip, config) {
 		// New row for the trip
 		let trTrip = document.createElement("tr");
@@ -129,20 +111,25 @@ Module.register("MMM-RVV", {
 		// Holds the remaining time till the bus departs (e.g. "13 Min.")
 		let tdTripDeparture = document.createElement("td");
 		tdTripDeparture.className = "rvvTripColDeparture";
-		let remainingMinutes = this.getRemainingMinutes(curTrip.departure);
-		if (remainingMinutes >= 60) {
-			tdTripDeparture.textContent = //this.translate("AT") + " " +
-			curTrip.departure + "h";
-		} else if (remainingMinutes === 0) {
+		// Add postfix to departures >1 hour in the future
+		if (curTrip.remainingMinutes >= 60) {
+			tdTripDeparture.textContent = curTrip.departure + "h";
+		// Add content 'now' for buses departing in [0, 1] minutes
+		} else if (curTrip.remainingMinutes === 0 || curTrip.remainingMinutes === 1) {
 			tdTripDeparture.textContent = this.translate("NOW");
+		// Add prefix 'before' for buses already departed but having delay
+		} else if (curTrip.remainingMinutes < 0) {
+			tdTripDeparture.textContent = this.translate("BEFORE") + " " + Math.abs(curTrip.remainingMinutes) + " " + this.translate("MINUTES_ABBR");;
+		// Add prefix 'in' for buses departing regularly
 		} else {
-			tdTripDeparture.textContent = "in " + remainingMinutes + " " + this.translate("MINUTES_ABBR");
+			tdTripDeparture.textContent = "in " + curTrip.remainingMinutes + " " + this.translate("MINUTES_ABBR");
 		}
 
-		// Adds the delay: e.g. '(+1)' or '(0)', having different styles applied
+		// Adds the delay: e.g. '(+1)' or '(0)' or 'Halt entfällt', having different styles applied
 		var spnTripDelay = document.createElement("span");
 		spnTripDelay.className = "rvvTripColDelay";
-		spnTripDelay.classList.add(curTrip.delay > 0 ? "rvvTripHasDelay": "rvvTripHasNoDelay");
+		var delayOptions = ["Halt entfällt", "Fahrt fällt aus"];
+		spnTripDelay.classList.add(curTrip.delay > 0 || delayOptions.includes(curTrip.delay) ? "rvvTripHasDelay": "rvvTripHasNoDelay");
 		spnTripDelay.textContent = " (" + curTrip.delay + ")";
 		tdTripDeparture.appendChild(spnTripDelay);
 

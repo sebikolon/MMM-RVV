@@ -14,7 +14,29 @@ module.exports = {
 		}
 	},
 
+	getRemainingMinutes: function(sDeparture) {
+		if (sDeparture.length != 5){
+			return sDeparture;
+		}
+		let dtNow = new Date();
+		let dtGiven = new Date(
+			dtNow.getFullYear(),
+			dtNow.getMonth(),
+			dtNow.getDate(),
+			sDeparture.substr(0,2),
+			sDeparture.substr(3,2),
+			dtNow.getSeconds());
+
+		let diff = (dtGiven.getTime() - dtNow.getTime()) / 1000;
+		diff /= 60;
+		return Math.round(diff);
+	},
+
 	addTrip: function(tripObj, trips, config){
+
+		// Calculate remaining minutes
+		tripObj.remainingMinutes = this.getRemainingMinutes(tripObj.departure);
+
 		// Check special conditions
 		if (trips.length > 0) {
 			// Case 1: Remove the first of 2 duplicated trips for route "Graßer Weg" => "Schwabenstraße"
