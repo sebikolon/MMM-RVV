@@ -14,6 +14,10 @@ module.exports = {
 		}
 	},
 
+	// padWithZeros: function(n) {
+	// 	return n < 10 ? "0" + n: n;
+	// },
+
 	getRemainingMinutes: function(sDeparture) {
 		if (sDeparture.length != 5){
 			return sDeparture;

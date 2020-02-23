@@ -2,16 +2,16 @@ Module.register("MMM-RVV", {
 
 	// Default module config.
 	defaults: {
-		updateInterval : 30 * 1000, // 30 seconds
-		titleText: "Universität Regensburg",
-		url : "http://www.bayern-fahrplan.de/xhr_departures_monitor?limit=25&zope_command=dm_next&nameInfo_dm=",
-		logToConsole : false,		// Log each single trip onto the console (for debugging purposes)
-		progressColor: "#6db64b", 			// Default color (or RGB code) of the progress bar
-		wrapDestination: true,
-		maximumTripsToShow: 5,		// Max. number of trips to show
-		maxTitleLength: 12,			// Set a limit for the number of trips to be displayed
-		stop_from_ID: 4014080, 		// (Universität) // 4014037 (Graßer Weg),		// Get your stopID from: https://www.bayern-fahrplan.de/XML_COORD_REQUEST?&jsonp=jQuery17203101277124009285_1524132000786&boundingBox=&boundingBoxLU=11.953125%3A49.15297%3AWGS84%5BDD.DDDDD%5D&boundingBoxRL=12.304688%3A48.922499%3AWGS84%5BDD.DDDDD%5D&coordOutputFormat=WGS84%5BDD.DDDDD%5D&type_1=STOP&outputFormat=json&inclFilter=1&_=1524132001290
-		stop_to: []					// The names of the destination stops. If not set, display all destinations
+		updateInterval :	30 * 1000, 	// Updates data every 30 seconds
+		titleText : 		"Universität Regensburg", // Module header title
+		url : 				"http://www.bayern-fahrplan.de/xhr_departures_monitor?limit=25&zope_command=dm_next&nameInfo_dm=",
+		logToConsole : 		false,		// Log each single trip onto the console (for debugging purposes)
+		progressColor: 		"#6db64b", 	// Default color (or RGB code) of the progress bar
+		wrapDestination: 	true,
+		maximumTripsToShow: 5,			// Max. number of trips to show
+		maxTitleLength: 	12,			// Set a limit for the number of trips to be displayed
+		stop_from_ID: 		4014080, 	// (Universität) // 4014037 (Graßer Weg),		// Get your stopID from: https://www.bayern-fahrplan.de/XML_COORD_REQUEST?&jsonp=jQuery17203101277124009285_1524132000786&boundingBox=&boundingBoxLU=11.953125%3A49.15297%3AWGS84%5BDD.DDDDD%5D&boundingBoxRL=12.304688%3A48.922499%3AWGS84%5BDD.DDDDD%5D&coordOutputFormat=WGS84%5BDD.DDDDD%5D&type_1=STOP&outputFormat=json&inclFilter=1&_=1524132001290
+		stop_to: 			[]			// The names of the destination stops. If not set, display all destinations
 	},
 
 	start: function() {
@@ -141,10 +141,6 @@ Module.register("MMM-RVV", {
 		return trTrip;
 	},
 
-	padWithZeros: function(n) {
-		return n < 10 ? "0" + n: n;
-	},
-
 	getDom: function() {
 		var wrapper = document.createElement("div");
 		wrapper.id = "wrapper";
@@ -152,10 +148,12 @@ Module.register("MMM-RVV", {
 		var tripWrapper = document.createElement("div");
 		tripWrapper.id = "rvv-container";
 
+		// Creates the loading bar animation wrapper
 		var divReloadWrapper = document.createElement("div");
 		divReloadWrapper.id = "divReloadWrapper";
 		divReloadWrapper.style.width = wrapper.width - 50;
 
+		// Creates the loading bar animation
 		var divReload = document.createElement("div");
 		divReload.id = "divReload";
 		divReload.style.animationDuration = (this.config.updateInterval / 1000) + "s";
@@ -173,18 +171,15 @@ Module.register("MMM-RVV", {
 			} else{
 				text.innerHTML = this.translate("LOADING");
 			}
-			// text.className = " dimmed";
 			wrapper.appendChild(text);
 			return wrapper;
 		}
 
 		var header = document.createElement("header");
-		header.innerHTML = this.config.titleText; // +  lastUpdate;
+		header.innerHTML = this.config.titleText;
 		wrapper.appendChild(header);
 
-		//tripWrapper.appendChild(spnTripWrapper);
-
-		// Create new table that will hold all trips in a single row
+		// Create new table that will hold our trip data
 		tblTrips = document.createElement("table");
 		tblTrips.className = "small";
 

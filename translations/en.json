@@ -13,7 +13,7 @@
   "NOW": "now",
   "BEFORE": "before",
   "AT": "at",
-  "MINUTE": "Minute",  
-  "MINUTES": "Minutes",
-  "MINUTES_ABBR": "Min."
+  "MINUTE": "minute",  
+  "MINUTES": "minutes",
+  "MINUTES_ABBR": "min."
 }
