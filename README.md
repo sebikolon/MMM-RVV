@@ -34,7 +34,7 @@ There is a **progresse loading bar** displayed that runs from the left to the ri
 This module has been programmed to allow for **multiple instances**. Simply add more MMM-RVV config entries to your config.js file to display multiple stations and configure them according to your needs.
 
 ## Configuration
-You can show the MMM-RVV module without setting any configuration options.<BR>In this case, the stop 'Regensburg University` is set as default *stop_from_ID*.
+You can show the MMM-RVV module without setting any configuration options.<BR>In this case, the stop `Regensburg University` is set as default *stop_from_ID*.
 
 Sample configuration entry for your `~/MagicMirror/config/config.js` with optional parameters:
 
@@ -69,26 +69,3 @@ Sample configuration entry for your `~/MagicMirror/config/config.js` with option
 | logToConsole<BR>`optional`       | false      |<BR>Turn on the log onto the console (for debugging purposes)<BR><P> |
 | progressColor<BR>`optional`       | #6db64b      |<BR> Default color name (or RGB code) of the progress bar<BR><EM>Default: RVV (Regensburger Verkehrsverbund) CI color (light green)</EM><P> |
 | updateInterval<BR>`optional` | 30 * 1000 | <BR>How often should the trip data be refreshed (in milliseconds)?<BR><EM> Default: Every 30 seconds </EM><P> |
-
-## Licence
-MIT License
-
-Copyright (c) 2020 sebikolon (https://github.com/sebikolon)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
