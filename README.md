@@ -4,7 +4,7 @@ Departure monitor for the [**RVV (Regensburger Verkehrsverbund)**](https://rvv.d
 The data is fetched from [bayern-fahrplan.de](https://bayern-fahrplan.de "Bayern Fahrplan"), the distributor for public transport data in bavaria.
 The reason for the development of this open source module is because the official API provided by them requires the signage of a personalized contract in order to gain access to their endpoints. For me, this violates the approach of open data. 
 
-The structure and layout of this MagicMirror module was inspired by [MMM-KVV](https://github.com/yo-less/MMM-KVV *Karlsruhe Public Transport*).
+The structure and layout of this MagicMirror module was inspired by [MMM-KVV](https://github.com/yo-less/MMM-KVV "Karlsruhe Public Transport").
 
 ## Screenshots
 
@@ -29,14 +29,12 @@ A working installation of [MagicMirror<sup>2</sup>](https://github.com/MichMich/
 4. Execute `npm install`.
 
 ## Module behavior
-Please note that this module **auto-creates a module header** which displays the text that was defined in the module settings. It is therefore recommended not to add a 'header' entry to your config.js for this module.
-<P>
-There is a **progresse loading bar** displayed that runs from the left to the right side of the module border, indicating when the next data refresh is performed. You can adjust the color of this loading bar in the module config. In order to adjust the look-and-feel more granular, add an override to the CSS identifiers `.MMM-RVV #divReload` and `.MMM-RVV #divReloadWrapper`.
-<P>
+Please note that this module **auto-creates a module header** which displays the text that was defined in the module settings. It is therefore recommended not to add a 'header' entry to your config.js for this module.<P>
+There is a **progresse loading bar** displayed that runs from the left to the right side of the module border, indicating when the next data refresh is performed. You can adjust the color of this loading bar in the module config. In order to adjust the look-and-feel more granular, add an override to the CSS identifiers `.MMM-RVV #divReload` and `.MMM-RVV #divReloadWrapper`.<P>
 This module has been programmed to allow for **multiple instances**. Simply add more MMM-RVV config entries to your config.js file to display multiple stations and configure them according to your needs.
 
 ## Configuration
-You can show the MMM-RVV module without setting any configuration options. In this case, the stop 'Regensburg University' is set as default stop_from_ID.
+You can show the MMM-RVV module without setting any configuration options.<BR>In this case, the stop 'Regensburg University` is set as default *stop_from_ID*.
 
 Sample configuration entry for your `~/MagicMirror/config/config.js` with optional parameters:
 
