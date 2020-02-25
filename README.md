@@ -9,9 +9,9 @@ The structure and layout of this MagicMirror module was inspired by [MMM-KVV](ht
 ## Screenshots
 
 German (1):<p>
-![German version (1)](res/screenshot_de.png)
+![German version (1)](res/screenshot_de.png)<p>
 German (2):<p>
-![German version (2)](res/screenshot_de_hbf.png)
+![German version (2)](res/screenshot_de_hbf.png)<p>
 English:<p>
 ![English version](res/screenshot_en.png)
 
