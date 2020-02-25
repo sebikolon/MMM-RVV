@@ -31,7 +31,7 @@ A working installation of [MagicMirror<sup>2</sup>](https://github.com/MichMich/
 ## Module behavior
 Please note that this module **auto-creates a module header** which displays the text that was defined in the module settings. It is therefore recommended not to add a 'header' entry to your config.js for this module.<P>
 There is a **progress loading bar** displayed that runs from the left to the right side of the module border, indicating when the next data refresh is performed. You can adjust the color of this loading bar in the module config. In order to adjust the look-and-feel more granular, add an override to the CSS identifiers `.MMM-RVV #divReload` and `.MMM-RVV #divReloadWrapper`.<P>
-The **delay** of an upcoming trip is marked in red color (if there is any), otherwise in green color. Additional information like *Trip cancelled* will be shown instead the delay, if defined.<P>
+The **delay** of an upcoming trip is marked in red color (if there is any), otherwise in green color. If defined, additional trip information like *Trip cancelled* will be shown instead of the delay.<P>
 This module has been programmed to allow for **multiple instances**. Simply add more MMM-RVV config entries to your config.js file to display multiple stations and configure them according to your needs.
 
 ## Configuration
