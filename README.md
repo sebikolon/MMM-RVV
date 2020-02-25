@@ -31,6 +31,7 @@ A working installation of [MagicMirror<sup>2</sup>](https://github.com/MichMich/
 ## Module behavior
 Please note that this module **auto-creates a module header** which displays the text that was defined in the module settings. It is therefore recommended not to add a 'header' entry to your config.js for this module.<P>
 There is a **progress loading bar** displayed that runs from the left to the right side of the module border, indicating when the next data refresh is performed. You can adjust the color of this loading bar in the module config. In order to adjust the look-and-feel more granular, add an override to the CSS identifiers `.MMM-RVV #divReload` and `.MMM-RVV #divReloadWrapper`.<P>
+The **delay** of an upcoming trip is marked in red color (if there is any), otherwise in green color. Additional information like *Trip cancelled* will be shown instead the delay, if defined.<P>
 This module has been programmed to allow for **multiple instances**. Simply add more MMM-RVV config entries to your config.js file to display multiple stations and configure them according to your needs.
 
 ## Configuration
@@ -64,8 +65,8 @@ Sample configuration entry for your `~/MagicMirror/config/config.js` with option
 | **Option** | **Default** | **Description** |
 | :---: | :---: | --- |
 | stop_from_ID | 4014080 |<BR>Which stop would you like to have displayed? <BR><EM> Default: University Regensburg</EM><P> |
-| stop_to<BR>`optional`       | []      |<BR>Which directions do you want to include into your trip list?<BR>Put the names of the stops into the array, separated by comma.<BR><EM>Default: Show all directions </EM><P> |
-| maximumTripsToShow<BR>`optional`       | 5      |<BR>How many trips to you want to show in total (including all directions)?<BR>This is a maximum value. Probably there are less trips available then desired.<P> |
+| stop_to<BR>`optional`       | []      |<BR>Which directions do you want to include into your trip list?<BR>Put the names of the stops into the array, separated by comma<BR><EM>Default: Show all directions </EM><P> |
+| maximumTripsToShow<BR>`optional`       | 5      |<BR>How many trips to you want to show in total (including all directions)?<BR>This is a maximum value. Probably there are less trips available then desired<P> |
 | logToConsole<BR>`optional`       | false      |<BR>Turn on the log onto the console (for debugging purposes)<BR><P> |
 | progressColor<BR>`optional`       | #6db64b      |<BR> Default color name (or RGB code) of the progress bar<BR><EM>Default: RVV (Regensburger Verkehrsverbund) CI color (light green)</EM><P> |
 | updateInterval<BR>`optional` | 30 * 1000 | <BR>How often should the trip data be refreshed (in milliseconds)?<BR><EM> Default: Every 30 seconds </EM><P> |
