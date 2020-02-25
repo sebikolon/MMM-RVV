@@ -147,7 +147,6 @@ Module.register("MMM-RVV", {
 		// Creates the loading bar animation wrapper
 		var divReloadWrapper = document.createElement("div");
 		divReloadWrapper.id = "divReloadWrapper";
-		divReloadWrapper.style.width = wrapper.width - 50;
 
 		// Creates the loading bar animation
 		var divReload = document.createElement("div");

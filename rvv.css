@@ -1,19 +1,25 @@
 
 .MMM-RVV #divReloadWrapper {
   margin-bottom: 10px;
+  /* Use here the same value as 'width' property of child element #divReload */
+  margin-right: 50px; 
  }
 
 .MMM-RVV #divReload {
+  /* Adjust this value to modify the progress bar. Take care on the wrapper margin! */
   width: 50px;
+  /* Adjust this value to modify the progress bar */
   height: 5px;
   position: relative;
   animation: mymove infinite;
+  /* This is the default duration. The 'real' duration is set on runtime */
   animation-duration: 30s;
 }
 
 @keyframes mymove {
+  /* Runs from left to right of the #divReloadWrapper */
   from {left: 0px;}
-  to {left: 83%;}
+  to {left: 100%;}
 }
 
 .MMM-RVV .rvvTripRow {
