@@ -31,6 +31,11 @@ module.exports = {
 			sDeparture.substr(3,2),
 			dtNow.getSeconds());
 
+		// If the bus is departing on the next day, increment the day property
+		if (dtNow.getHours() > sDeparture.substr(0,2)) {
+			dtGiven.setDate(dtGiven.getDate() + 1);
+		}
+
 		let diff = (dtGiven.getTime() - dtNow.getTime()) / 1000;
 		diff /= 60;
 		return Math.round(diff);
