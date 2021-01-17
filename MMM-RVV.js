@@ -54,7 +54,7 @@ Module.register("MMM-RVV", {
 
 	socketNotificationReceived: function(notification, payload) {
 		this.notification = notification;
-		if (notification === "RETURN_TRIPS" || notification === "ERR_RETURN_TRIPS") {
+		if (notification === "RETURN_TRIPS" + this.config.stop_from_ID || notification === "ERR_RETURN_TRIPS") {
 			this.trips = payload.trips;
 			this.updateDom(1000); 		// 1 sec animation delay
 		}
