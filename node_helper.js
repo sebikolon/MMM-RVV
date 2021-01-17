@@ -110,7 +110,7 @@ module.exports = NodeHelper.create({
 				});
 
 				// Return trips to requester
-				self.sendSocketNotification("RETURN_TRIPS", {
+				self.sendSocketNotification("RETURN_TRIPS" + payload.config.stop_from_ID, {
 					trips : trips
 				});
 
