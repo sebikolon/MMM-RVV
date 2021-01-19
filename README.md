@@ -1,8 +1,8 @@
 # MMM-RVV
-Departure monitor for the [**RVV (Regensburger Verkehrsverbund)**](https://rvv.de "RVV Homepage") train and bus system (ÖPNV / public transport).
+Departure monitor for the local public transport (ÖPNV) of Bavaria.
 
-The data is fetched from [bayern-fahrplan.de](https://bayern-fahrplan.de "Bayern Fahrplan"), the distributor for public transport data in bavaria.
-I developed this open source module, because their official API requires the signage of a personalized contract in order to gain access to their endpoints .. which is annoying. Therefore, the module scrapes the departure data without requiring any API key or special permission and offers a bunch of options you can play around with. Feel free to contribute!
+The data is fetched from [bayern-fahrplan.de](https://bayern-fahrplan.de "Bayern Fahrplan"), the distributor for public transport data in Bavaria.
+The module scrapes the departure data without requiring any API key or special permission and offers a bunch of options you can play around with. Feel free to contribute!
 
 The structure and layout of this MagicMirror module was inspired by [MMM-KVV](https://github.com/yo-less/MMM-KVV "Karlsruhe Public Transport").
 
@@ -60,9 +60,13 @@ Sample configuration entry for your `~/MagicMirror/config/config.js` with option
     ...
 
 ## How to get the correct stopID
-1. Open your web browser and navigate to the [bayern-fahrplan.de stop list](https://www.bayern-fahrplan.de/XML_COORD_REQUEST?&jsonp=jQuery17203101277124009285_1524132000786&boundingBox=&boundingBoxLU=11.953125%3A49.15297%3AWGS84%5BDD.DDDDD%5D&boundingBoxRL=12.304688%3A48.922499%3AWGS84%5BDD.DDDDD%5D&coordOutputFormat=WGS84%5BDD.DDDDD%5D&type_1=STOP&outputFormat=json&inclFilter=1&_=1524132001290).
-2. Use the search field to find the stop name you are interested in (e.g. 'Universität').
-3. If found, search within the json record for "id" (a 6-8 digit number), this is the `stop_from_ID` you are looking for.
+1. Open your web browser and navigate to the [the txt version of bayern-fahrplan.de](https://txt.bayern-fahrplan.de/textversion/bcl_abfahrtstafel).
+2. Click on "Abfahrtsmonitor anfordern" to reveal a search field.
+3. Write the name of your stop (e.g. Regensburg Universität) and press enter
+4. Choose the right stop if more than one stop is found with your keywords (N.B. only choose actual stops, labeled with "[Haltestelle]").
+5. Click on "Abfahrtsmonitor anfordern" to show the next departures from that stop.
+6. Once the departures are shown, look at the source code of the page (e.g. in Firefox: right click -> View Page Source)
+7. Search the name of the stop in the source code. The stopID (7-digit number) is indicated e few characters after it, right after ```value=```. For example, for "Regensburg Universität" (stopID 4014080) we'll have: ``` <b>Regensburg Universität<span class="odvDesc"> [Haltestelle]</span><input type="hidden" name="name_dm" value="4014080"/> ```.
 
 
 ## Config Options
